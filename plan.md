@@ -5,7 +5,9 @@ Elm is a functional reactive language that compiles to JavaScript with features 
 We'll introduce the language and tooling, learn the basics of FRP with Elm and build a small application in the dojo session.
 
 * Why should you care about Elm?
-	* Establish that it's cool
+	* Establish that it's interesting
+		* Learn FRP in a strict environment
+		* Try out a Haskell-like language without having to worry about Functors and Monads
 	* Demo with time-travel debugging (real app, not Mario thing?)
 	* Hot code swapping
 	* Emphasise that this is possible out of the box
