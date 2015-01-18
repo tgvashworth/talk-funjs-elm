@@ -3,8 +3,9 @@ module Username where
 import Html (..)
 import Html.Attributes (..)
 import Html.Events (..)
+import Regex
 import Signal (..)
-import String (..)
+import String
 import Graphics.Element as Element
 import Window
 
@@ -53,13 +54,23 @@ updates = channel NoOp
 -- Logic
 
 cleanup : String -> String
-cleanup = trim >> split " " >> join "-"
+cleanup =
+  String.trim >>
+  Regex.replace Regex.All punctuation (always "") >>
+  Regex.replace Regex.All multispace (always " ") >>
+  String.split " " >>
+  String.join "-"
 
 -- Utils
 
 spacer : String -> Html
 spacer h =
   div [ style [ ("height", h) ] ] []
+
+punctuation : Regex.Regex
+punctuation = Regex.caseInsensitive (Regex.regex "[^a-z ]")
+
+multispace = Regex.regex " {1,}"
 
 -- Styles
 
