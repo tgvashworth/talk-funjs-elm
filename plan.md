@@ -24,3 +24,12 @@ We'll introduce the language and tooling, learn the basics of FRP with Elm and b
 * Super-simple "hello world" app
 	* Link Channel up to output
 	* Show the reactor
+	* Debug it with watchers
+* Search GitHub
+	* Link input to HTTP request
+	* Live-add a throttle
+
+* making a build from its
+
+* theory
+* graph

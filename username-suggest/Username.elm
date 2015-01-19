@@ -1,12 +1,13 @@
 module Username where
 
+import Debug
+import Graphics.Element as Element
 import Html (..)
 import Html.Attributes (..)
 import Html.Events (..)
 import Regex
 import Signal (..)
 import String
-import Graphics.Element as Element
 import Window
 
 type alias State =
@@ -25,27 +26,34 @@ state = foldp step initialState (subscribe updates)
 
 render : State -> (Int,Int) -> Element.Element
 render state (w,h) =
-  toElement w h <|
-    div
-      [ class "test"
-      , containerStyle
-      ]
-      [ spacer "1em"
-      , input
-          [ inputStyle
-          , on "keyup" targetValue (\val -> send updates (Change val))
-          , value state.username
-          ]
-          []
-      , spacer "1em"
-      , div [ outputStyle ] [ text <| cleanup state.username ]
-      ]
+  let
+    _ = Debug.watch "state.username" state.username
+    _ = Debug.watch "cleanup state.username" (cleanup state.username)
+  in
+    toElement w h <|
+      div
+        [ class "test"
+        , containerStyle
+        ]
+        [ spacer "1em"
+        , input
+            [ inputStyle
+            , on "keyup" targetValue (\val -> send updates (Change val))
+            , value state.username
+            ]
+            []
+        , spacer "1em"
+        , div [ outputStyle ] [ text <| cleanup state.username ]
+        ]
 
 step : Update -> State -> State
 step update state =
-  case update of
-    Change str -> { state | username <- str }
-    _ -> state
+  let
+    _ = Debug.watch "update" update
+  in
+    case update of
+      Change str -> { state | username <- str }
+      _ -> state
 
 initialState : State
 initialState =
