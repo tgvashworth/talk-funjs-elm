@@ -12,7 +12,9 @@ import Window
 type alias State =
   { username : String }
 
-type Update = NoOp | Change String
+type Update
+  = NoOp
+  | Change String
 
 main : Signal Element.Element
 main = render <~ state
@@ -32,6 +34,7 @@ render state (w,h) =
       , input
           [ inputStyle
           , on "keyup" targetValue (\val -> send updates (Change val))
+          , value state.username
           ]
           []
       , spacer "1em"
@@ -68,7 +71,7 @@ spacer h =
   div [ style [ ("height", h) ] ] []
 
 punctuation : Regex.Regex
-punctuation = Regex.caseInsensitive (Regex.regex "[^a-z ]")
+punctuation = Regex.caseInsensitive (Regex.regex "[^a-z -]")
 
 multispace = Regex.regex " {1,}"
 
