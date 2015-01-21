@@ -1,6 +1,8 @@
 module GithubSearch where
 
 import Debug
+import Json.Decode as Json
+import Json.Decode ((:=))
 import Graphics.Element as Element
 import Html (..)
 import Html.Attributes (..)
@@ -25,6 +27,13 @@ type QueryResponse
   = QuerySuccess String
   | QueryWaiting
   | QueryFailure
+
+type alias GithubUser =
+  { login : String
+  , id : Int
+  , avatarUrl : String
+  , url : String
+  }
 
 -- Main
 
@@ -102,9 +111,28 @@ processQueryHttpResponse res =
     _ = Debug.watch "res" res
   in
     case res of
-      Http.Success result -> QuerySuccess "success!"
+      Http.Success result -> QuerySuccess (processQueryResponseJson result)
       Http.Waiting -> QueryWaiting
       Http.Failure _ _ -> QueryFailure
+
+processQueryResponseJson : String -> String
+processQueryResponseJson json =
+  let
+    _ = Debug.watch "decoded" (Json.decodeString queryResponseDecoder json)
+  in
+    json
+
+queryResponseDecoder : Json.Decoder (List GithubUser)
+queryResponseDecoder =
+  Json.at [ "items" ] (Json.list githubUserDecoder)
+
+githubUserDecoder : Json.Decoder GithubUser
+githubUserDecoder =
+  Json.object4 GithubUser
+    ("login"      := Json.string)
+    ("id"         := Json.int)
+    ("avatar_url" := Json.string)
+    ("html_url"   := Json.string)
 
 -- Logic
 
