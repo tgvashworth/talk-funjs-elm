@@ -68,11 +68,15 @@ render state (w,h) =
       , spacer "1em"
       , div
           [ class "users" ]
-          (List.map renderUser state.users)
+          (List.indexedMap renderUser state.users)
       ]
 
-renderUser : GithubUser -> Html
-renderUser user = div [] [ text user.login ]
+renderUser : Int -> GithubUser -> Html
+renderUser i user =
+  div
+    [ userStyle i ]
+    [ img [ avatarStyle, src user.avatarUrl ] []
+    , a [ href user.url, target "blank" ] [ text user.login ] ]
 
 step : Update -> State -> State
 step update state =
@@ -168,17 +172,29 @@ containerStyle =
     [ ("margin", "0 1em")
     , ("width", "50%")
     , ("max-width", "30em")
+    , ("font-size", "2em")
     ]
 
 inputStyle : Attribute
 inputStyle =
   style
-    [ ("font-size", "2em")
+    [ ("font-size", "1em")
     , ("width", "100%")
     ]
 
-outputStyle : Attribute
-outputStyle =
+userStyle : Int -> Attribute
+userStyle i =
   style
-    [ ("font-size", "2em")
+    [ ("padding", "0.5em")
+    , if i % 2 == 0 then ("background-color", "#fafafa") else ("","")
+    ]
+
+avatarStyle : Attribute
+avatarStyle =
+  style
+    [ ("width", "1.5em")
+    , ("height", "1.5em")
+    , ("display", "inline-block")
+    , ("vertical-align", "middle")
+    , ("margin-right", "0.5em")
     ]
