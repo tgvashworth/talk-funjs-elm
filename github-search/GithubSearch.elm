@@ -8,6 +8,7 @@ import Html (..)
 import Html.Attributes (..)
 import Html.Events (..)
 import Http
+import List
 import Regex
 import Result
 import Signal (..)
@@ -52,23 +53,26 @@ state = foldp step initialState updates
 
 render : State -> (Int,Int) -> Element.Element
 render state (w,h) =
-  let
-    _ = Debug.watch "state.query" state.query
-  in
-    toElement w h <|
-      div
-        [ class "test"
-        , containerStyle
-        ]
-        [ spacer "1em"
-        , input
-            [ inputStyle
-            , on "keyup" targetValue (send queryChannel)
-            , value state.query
-            ]
-            []
-        , spacer "1em"
-        ]
+  toElement w h <|
+    div
+      [ class "container"
+      , containerStyle
+      ]
+      [ spacer "1em"
+      , input
+          [ inputStyle
+          , on "keyup" targetValue (send queryChannel)
+          , value state.query
+          ]
+          []
+      , spacer "1em"
+      , div
+          [ class "users" ]
+          (List.map renderUser state.users)
+      ]
+
+renderUser : GithubUser -> Html
+renderUser user = div [] [ text user.login ]
 
 step : Update -> State -> State
 step update state =
