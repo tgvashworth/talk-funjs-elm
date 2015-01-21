@@ -9,22 +9,26 @@ import Html.Attributes (..)
 import Html.Events (..)
 import Http
 import Regex
+import Result
 import Signal (..)
 import Signal.Time
+import Time
 import String
 import Window
 
 -- Model
 
 type alias State =
-  { username : String }
+  { query : String
+  , users : List GithubUser }
 
 type Update
   = NoOp
-  | Change String
+  | Query String
+  | Users (List GithubUser)
 
-type QueryResponse
-  = QuerySuccess String
+type QueryResponse a
+  = QuerySuccess a
   | QueryWaiting
   | QueryFailure
 
@@ -35,6 +39,8 @@ type alias GithubUser =
   , url : String
   }
 
+type alias GithubUsers = List GithubUser
+
 -- Main
 
 main : Signal Element.Element
@@ -42,13 +48,12 @@ main = render <~ state
                ~ Window.dimensions
 
 state : Signal State
-state = foldp step initialState (subscribe updates)
+state = foldp step initialState updates
 
 render : State -> (Int,Int) -> Element.Element
 render state (w,h) =
   let
-    _ = Debug.watch "state.username" state.username
-    _ = Debug.watch "cleanup state.username" (cleanup state.username)
+    _ = Debug.watch "state.query" state.query
   in
     toElement w h <|
       div
@@ -59,11 +64,10 @@ render state (w,h) =
         , input
             [ inputStyle
             , on "keyup" targetValue (send queryChannel)
-            , value state.username
+            , value state.query
             ]
             []
         , spacer "1em"
-        , div [ outputStyle ] [ text <| cleanup state.username ]
         ]
 
 step : Update -> State -> State
@@ -72,28 +76,30 @@ step update state =
     _ = Debug.watch "update" update
   in
     case update of
-      Change str -> { state | username <- str }
+      Users users -> { state | users <- users }
+      Query query -> { state | query <- query }
       _ -> state
 
 initialState : State
 initialState =
-  { username = "" }
+  { query = ""
+  , users = [] }
 
 -- Inputs
 
-updates : Channel Update
-updates = channel NoOp
+updates : Signal Update
+updates =
+  mergeMany
+    [ Time.delay Time.millisecond queryResponseSignal
+    , Query <~ (subscribe queryChannel) ]
 
 queryChannel : Channel String
 queryChannel = channel ""
 
-querySignal : Signal String
-querySignal = subscribe queryChannel |> dropRepeats
-
 throttledQuerySignal : Signal String
-throttledQuerySignal = Signal.Time.limitRate 1 querySignal
+throttledQuerySignal = Signal.Time.limitRate 1 (subscribe queryChannel)
 
-queryResponseSignal : Signal QueryResponse
+queryResponseSignal : Signal Update
 queryResponseSignal = processQueryHttpResponse <~ Http.sendGet (makeQueryUrl <~ throttledQuerySignal)
 
 makeQueryUrl : String -> String
@@ -105,22 +111,17 @@ makeQueryUrl query =
       "" -> ""
       _ -> "https://api.github.com/search/users?access_token=2cf5002b767faf4aae3a3645952d8d24e7eecc64&q=" ++ query
 
-processQueryHttpResponse : Http.Response String -> QueryResponse
+processQueryHttpResponse : Http.Response String -> Update
 processQueryHttpResponse res =
-  let
-    _ = Debug.watch "res" res
-  in
-    case res of
-      Http.Success result -> QuerySuccess (processQueryResponseJson result)
-      Http.Waiting -> QueryWaiting
-      Http.Failure _ _ -> QueryFailure
+  case res of
+    Http.Success result -> Users (processQueryResponseJson result)
+    _ -> NoOp
 
-processQueryResponseJson : String -> String
+processQueryResponseJson : String -> GithubUsers
 processQueryResponseJson json =
-  let
-    _ = Debug.watch "decoded" (Json.decodeString queryResponseDecoder json)
-  in
-    json
+  case (Json.decodeString queryResponseDecoder json) of
+    Result.Ok githubUsers -> githubUsers
+    _ -> []
 
 queryResponseDecoder : Json.Decoder (List GithubUser)
 queryResponseDecoder =
