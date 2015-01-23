@@ -9,7 +9,6 @@ import Html.Attributes (..)
 import Html.Events (..)
 import Http
 import List
-import Regex
 import Result
 import Signal (..)
 import Signal.Time
@@ -73,10 +72,15 @@ render state (w,h) =
 
 renderUser : Int -> GithubUser -> Html
 renderUser i user =
-  div
-    [ userStyle i ]
-    [ img [ avatarStyle, src user.avatarUrl ] []
-    , a [ href user.url, target "blank" ] [ text user.login ] ]
+  a
+    [ href user.url
+    , target "blank"
+    , userStyle i ]
+    [ renderAvatar user
+    , text user.login ]
+
+renderAvatar : GithubUser -> Html
+renderAvatar user = img [ avatarStyle, src user.avatarUrl ] []
 
 step : Update -> State -> State
 step update state =
@@ -143,27 +147,6 @@ githubUserDecoder =
     ("avatar_url" := Json.string)
     ("html_url"   := Json.string)
 
--- Logic
-
-cleanup : String -> String
-cleanup =
-  String.trim >>
-  Regex.replace Regex.All punctuation (always "") >>
-  Regex.replace Regex.All multispace (always " ") >>
-  String.split " " >>
-  String.join "-"
-
--- Utils
-
-spacer : String -> Html
-spacer h =
-  div [ style [ ("height", h) ] ] []
-
-punctuation : Regex.Regex
-punctuation = Regex.caseInsensitive (Regex.regex "[^a-z -]")
-
-multispace = Regex.regex " {1,}"
-
 -- Styles
 
 containerStyle : Attribute
@@ -185,7 +168,8 @@ inputStyle =
 userStyle : Int -> Attribute
 userStyle i =
   style
-    [ ("padding", "0.5em")
+    [ ("display", "block")
+    , ("padding", "0.5em")
     , if i % 2 == 0 then ("background-color", "#fafafa") else ("","")
     ]
 
@@ -198,3 +182,9 @@ avatarStyle =
     , ("vertical-align", "middle")
     , ("margin-right", "0.5em")
     ]
+
+-- Utils
+
+spacer : String -> Html
+spacer h =
+  div [ style [ ("height", h) ] ] []
