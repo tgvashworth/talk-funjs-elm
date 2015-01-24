@@ -2,15 +2,18 @@ module TheTypes where
 
 -- Type aliases
 
-type alias User = (Int, String)
+type alias UserId = Int
+type alias UserName = String
+type alias User = (UserId, UserName)
 
 handle : User -> String
-handle (id, username) = (++) "@" username
+handle (id, username) = "@" ++ username
 
 -- Algebraic data types
 
 type Tree a = EmptyNode | Node a (Tree a) (Tree a)
 
+singleton : comparable -> Tree comparable
 singleton v = Node v EmptyNode EmptyNode
 
 insert : comparable -> Tree comparable -> Tree comparable
@@ -22,11 +25,11 @@ insert v tree =
          | v > x -> Node x left (insert v right)
          | otherwise -> tree
 
-element : comparable -> Tree comparable -> Bool
-element v tree =
+contains : comparable -> Tree comparable -> Bool
+contains v tree =
   case tree of
     EmptyNode -> False
     Node x left right ->
       if | v == x -> True
-         | v < x  -> element v left
-         | v > x  -> element v right
+         | v < x  -> contains v left
+         | v > x  -> contains v right

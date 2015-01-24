@@ -1,7 +1,3 @@
-module TheBasics where
-import List
-import List (..)
-
 -- A function
 
 add a b = a + b
