@@ -1,0 +1,9 @@
+
+Why Elm?
+
+Learn a new thing & re-learn an old thing.
+\_______________/
+        |
+Functional Reactive Programming
+Strong, static-typing (Hindley-Milner)
+Purely functional language
