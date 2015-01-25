@@ -1,4 +1,0 @@
-
-Why Elm?
-
-Learn a new thing & re-learn an old thing.

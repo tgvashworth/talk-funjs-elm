@@ -1,9 +1,0 @@
-
-Agenda
-
-    1. Demo (Mario)
-    2. Basics
-    3. Demo (Slugify)
-    4. HTTP & JSON
-    5. Demo (GitHub Search)
-    6. Dojo (Build a thing)

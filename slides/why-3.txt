@@ -1,9 +1,0 @@
-
-Why Elm?
-
-Learn a new thing & re-learn an old thing.
-                    \___________________/
-                              |
-                    Front-end application architecture
-                    Approach to CSS & DOM manipulation
-                    Excitement about front-end

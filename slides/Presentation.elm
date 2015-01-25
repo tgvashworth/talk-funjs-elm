@@ -72,11 +72,13 @@ render state =
       [ class "Presentation"
       , mergeStyles [ presentationStyle ]
       ]
-      (List.append
-        [ styleBlock ]
-        (List.indexedMap
-          renderSlide
-          stateSlidePairs))
+      [ styleBlock
+      , div
+          []
+          (List.indexedMap
+            renderSlide
+            stateSlidePairs)
+      ]
 
 renderSlide : Int -> (AppState, Slide) -> Html
 renderSlide i (state, (title, slide)) =
@@ -94,13 +96,8 @@ styleBlock : Html
 styleBlock =
   node "style"
     []
-    [ text """
-
-img {
-  width: 100%;
-}
-
-    """]
+    [ text "img { width: 100%; }"
+    ]
 
 -- Styles
 
@@ -144,6 +141,7 @@ slides =
   , why2
   , why3
   , agenda
+  , makeSlide "## Demo *(Mario)*"
   , assumptions
   , makeSlide "## The Basics"
   , frp
@@ -152,6 +150,11 @@ slides =
   , makeSlide "![Merge](assets/merge.svg)"
   , makeSlide "![SampleOn](assets/sampleOn.svg)"
   , makeSlide "## Signals"
+  , makeSlide "## Demo *(Slugify)*"
+  , makeSlide "## Types"
+  , makeSlide "## Interacting with HTTP and JSON"
+  , makeSlide "## Demo *(GitHub Search)*"
+  , dojo
   ]
 
 makeSlide : String -> Slide
@@ -199,12 +202,14 @@ Learn a new thing & **try a new approach to old things**.
 agenda : Slide
 agenda = (,) "agenda" <| Markdown.toHtml """
 
-1. Demo *(Mario)*
-2. Basics
-3. Demo *(Slugify)*
-4. HTTP & JSON
-5. Demo *(GitHub Search)*
-6. Dojo *(Build a thing)*
+* Demo *(Mario)*
+* Basics
+* FRP WTF
+* Signals
+* Demo *(Slugify)*
+* HTTP & JSON
+* Demo *(GitHub Search)*
+* Dojo *(Build a thing)*
 
 """
 
@@ -229,5 +234,25 @@ frp = (,) "frp" <| Markdown.toHtml """
 - Inputs are *fixed*.
 
 Elm calls this "first-order" FRP.
+
+"""
+
+dojo : Slide
+dojo = (,) "dojo" <| Markdown.toHtml """
+
+## Dojo!
+
+- [elm-lang.org](http://elm-lang.org/)
+- Install Elm if you haven't already
+- **Build something!** Here's the recipie for Slugify:
+  - Get an input box on the screen
+  - Hook it up so the value is tied to application state
+  - Output the value to a different element
+  - Write a cleanup function and apply it to the input box's value before it's rendered
+  - Look at [github.com/phuu/talk-funjs-elm](https://github.com/phuu/talk-funjs-elm) for some code
+
+*BTW: this code running this presentation is (reasonably simple) Elm. You could try building that!*
+
+Thanks &hearts;
 
 """

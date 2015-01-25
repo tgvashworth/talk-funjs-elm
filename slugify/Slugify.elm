@@ -1,4 +1,4 @@
-module Username where
+module Slugify where
 
 import Debug
 import Graphics.Element as Element
@@ -11,7 +11,7 @@ import String
 import Window
 
 type alias State =
-  { username : String }
+  { text : String }
 
 type Update
   = NoOp
@@ -27,8 +27,7 @@ state = foldp step initialState (subscribe updates)
 render : State -> (Int,Int) -> Element.Element
 render state (w,h) =
   let
-    _ = Debug.watch "state.username" state.username
-    _ = Debug.watch "cleanup state.username" (cleanup state.username)
+    _ = Debug.watch "cleaned up" (cleanup state.text)
   in
     toElement w h <|
       div
@@ -39,11 +38,11 @@ render state (w,h) =
         , input
             [ inputStyle
             , on "keyup" targetValue (\val -> send updates (Change val))
-            , value state.username
+            , value state.text
             ]
             []
         , spacer "1em"
-        , div [ outputStyle ] [ text <| cleanup state.username ]
+        , div [ outputStyle ] [ text <| cleanup state.text ]
         ]
 
 step : Update -> State -> State
@@ -52,12 +51,12 @@ step update state =
     _ = Debug.watch "update" update
   in
     case update of
-      Change str -> { state | username <- str }
+      Change str -> { state | text <- str }
       _ -> state
 
 initialState : State
 initialState =
-  { username = "" }
+  { text = "" }
 
 updates : Channel Update
 updates = channel NoOp
