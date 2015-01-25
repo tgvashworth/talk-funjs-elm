@@ -69,10 +69,14 @@ render state =
     stateSlidePairs = List.map ((,) state) slides
   in
     div
-      [ class "Presentation" ]
-      (List.indexedMap
-        renderSlide
-        stateSlidePairs)
+      [ class "Presentation"
+      , mergeStyles [ presentationStyle ]
+      ]
+      (List.append
+        [ styleBlock ]
+        (List.indexedMap
+          renderSlide
+          stateSlidePairs))
 
 renderSlide : Int -> (AppState, Slide) -> Html
 renderSlide i (state, (title, slide)) =
@@ -86,10 +90,28 @@ renderSlide i (state, (title, slide)) =
     ]
     [ slide ]
 
+styleBlock : Html
+styleBlock =
+  node "style"
+    []
+    [ text """
+
+img {
+  width: 100%;
+}
+
+    """]
+
 -- Styles
 
 mergeStyles : List Style -> Attribute
 mergeStyles = (List.foldl Dict.union Dict.empty) >> Dict.toList >> style
+
+presentationStyle : Style
+presentationStyle =
+  Dict.fromList
+    [ ("font", "24px/1.4 Avenir Next")
+    ]
 
 slideStyle : Style
 slideStyle =
@@ -98,6 +120,7 @@ slideStyle =
     , ("box-sizing", "border-box")
     , ("padding", "1em 2.5em")
     , ("width", "100%")
+    , ("max-width", "40em")
     , ("height", "100%")
     , ("opacity", "0")
     , ("transition", "opacity 300ms ease-in")
@@ -122,13 +145,13 @@ slides =
   , why3
   , agenda
   , assumptions
-  , makeSlide "# The Basics"
+  , makeSlide "## The Basics"
   , frp
-  , makeSlide "![Signal Graph](assets/signal-graph.png)"
+  , makeSlide "![Signal Graph](assets/signal-graph.svg)"
   , makeSlide "![Signal](assets/Signal.svg)"
   , makeSlide "![Merge](assets/merge.svg)"
   , makeSlide "![SampleOn](assets/sampleOn.svg)"
-  , makeSlide "# The Signals"
+  , makeSlide "## Signals"
   ]
 
 makeSlide : String -> Slide

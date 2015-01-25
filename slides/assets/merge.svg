@@ -50,9 +50,9 @@
                 <circle id="Oval-14" cx="236" cy="8" r="8"></circle>
                 <circle id="Oval-15" cx="322" cy="8" r="8"></circle>
             </g>
-            <text id="↓-merge-↓" sketch:type="MSTextLayer" font-family="Lucida Grande" font-size="18" font-weight="normal" sketch:alignment="middle" fill="#292F33">
-                <tspan x="183.953" y="70" font-family="Gotham" font-weight="313">merge </tspan>
-                <tspan x="252.047" y="70">↓</tspan>
+            <text id="merge-↓" sketch:type="MSTextLayer" font-family="Gotham" font-size="18" font-weight="313" sketch:alignment="middle" fill="#292F33">
+                <tspan x="180.847824" y="67">merge </tspan>
+                <tspan x="243.541824" y="67" font-family="Lucida Grande" font-weight="normal">↓</tspan>
             </text>
         </g>
     </g>

@@ -26,11 +26,11 @@
                 <path id="Line-decoration-1" d="M0.5,4.5 C0.5,6.6 0.5,8.4 0.5,10.5" stroke="#979797" stroke-width="3" stroke-linecap="square"></path>
                 <path d="M6.5,7.5 L435.970612,7.5" id="Line-2" stroke="#979797" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
                 <path id="Line-2-decoration-1" d="M424.7,10.5 C428.48,9.45 431.72,8.55 435.5,7.5 C431.72,6.45 428.48,5.55 424.7,4.5" stroke="#979797" stroke-linecap="square"></path>
-                <circle id="Oval-9" fill="#4990E2" sketch:type="MSShapeGroup" cx="95" cy="8" r="8"></circle>
-                <circle id="Oval-12" fill="#4990E2" sketch:type="MSShapeGroup" cx="220" cy="8" r="8"></circle>
-                <circle id="Oval-13" fill="#4990E2" sketch:type="MSShapeGroup" cx="242" cy="8" r="8"></circle>
-                <circle id="Oval-14" fill="#4990E2" sketch:type="MSShapeGroup" cx="323" cy="8" r="8"></circle>
-                <circle id="Oval-15" fill="#4990E2" sketch:type="MSShapeGroup" cx="409" cy="8" r="8"></circle>
+                <circle id="Oval-9" fill="#565656" sketch:type="MSShapeGroup" cx="95" cy="8" r="8"></circle>
+                <circle id="Oval-12" fill="#565656" sketch:type="MSShapeGroup" cx="220" cy="8" r="8"></circle>
+                <circle id="Oval-13" fill="#565656" sketch:type="MSShapeGroup" cx="242" cy="8" r="8"></circle>
+                <circle id="Oval-14" fill="#565656" sketch:type="MSShapeGroup" cx="323" cy="8" r="8"></circle>
+                <circle id="Oval-15" fill="#565656" sketch:type="MSShapeGroup" cx="409" cy="8" r="8"></circle>
             </g>
             <path d="M0.5,95.5 L429.970612,95.5" id="Line" stroke="#979797" stroke-width="3" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
             <path id="Line-decoration-1" d="M0.5,92.5 C0.5,94.6 0.5,96.4 0.5,98.5" stroke="#979797" stroke-width="3" stroke-linecap="square"></path>
@@ -43,9 +43,9 @@
                 <circle id="Oval-14" fill="#D0011B" cx="236" cy="8" r="8"></circle>
                 <circle id="Oval-15" fill="#7ED321" cx="322" cy="8" r="8"></circle>
             </g>
-            <text id="↓-sampleOn-↓" sketch:type="MSTextLayer" font-family="Lucida Grande" font-size="18" font-weight="normal" sketch:alignment="middle" fill="#292F33">
-                <tspan x="167.483" y="70" font-family="Gotham" font-weight="313">sampleOn </tspan>
-                <tspan x="268.517" y="70">↓</tspan>
+            <text id="sampleOn-↓" sketch:type="MSTextLayer" font-family="Gotham" font-size="18" font-weight="313" sketch:alignment="middle" fill="#292F33">
+                <tspan x="164.377824" y="67">sampleOn </tspan>
+                <tspan x="260.011824" y="67" font-family="Lucida Grande" font-weight="normal">↓</tspan>
             </text>
         </g>
     </g>
