@@ -54,7 +54,7 @@ inputSignal = keyToInput <~ dropRepeats (.x <~ Keyboard.arrows)
 
 keyToInput : Int -> Input
 keyToInput x =
-  if | x < 0     -> ChangeSlide -1
+  if | x < 0     -> ChangeSlide (-1)
      | x > 0     -> ChangeSlide 1
      | otherwise -> NoOp
 
@@ -115,7 +115,21 @@ noStyle = Dict.empty
 -- Slides
 
 slides : List Slide
-slides = [ title, why, why2, why3, agenda ]
+slides =
+  [ title
+  , why
+  , why2
+  , why3
+  , agenda
+  , assumptions
+  , makeSlide "# The Basics"
+  , frp
+  , signalGraph
+  , makeSlide "# The Signals"
+  ]
+
+makeSlide : String -> Slide
+makeSlide str = (str, Markdown.toHtml str)
 
 title : Slide
 title = (,) "title" <| Markdown.toHtml """
@@ -165,5 +179,36 @@ agenda = (,) "agenda" <| Markdown.toHtml """
 4. HTTP & JSON
 5. Demo *(GitHub Search)*
 6. Dojo *(Build a thing)*
+
+"""
+
+assumptions : Slide
+assumptions = (,) "assumptions" <| Markdown.toHtml """
+
+I'm going to assume you understand the following:
+
+- pure functions
+- mapping, folding/reducing
+- higher-order functions and currying
+
+"""
+
+frp : Slide
+frp = (,) "frp" <| Markdown.toHtml """
+
+## Functional Reactive Programming
+
+- A *signal-graph* that's *connected input from the world*.
+- Signals are *infinite*.
+- Inputs are *fixed*.
+
+Elm calls this "first-order" FRP.
+
+"""
+
+signalGraph : Slide
+signalGraph = (,) "signal-graph" <| Markdown.toHtml """
+
+![Signal Graph](assets/signal-graph.png)
 
 """

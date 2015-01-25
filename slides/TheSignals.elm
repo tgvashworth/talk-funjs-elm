@@ -1,3 +1,9 @@
+-- Example Signals
+
+Mouse.position
+Window.dimensions
+Keyboard.arrows
+
 -- Mapping
 
 main : Signal Html
