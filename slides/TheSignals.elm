@@ -4,10 +4,10 @@ Mouse.position
 Window.dimensions
 Keyboard.arrows
 
--- Mapping
+-- Operations
 
-main : Signal Html
-main = Signal.map render appState
+input = Signal.merge Keyboard.arrors Keyboard.wasd
+search = Signal.sampleOn buttonClicksSignal inputBoxValueSignal
 
 -- Shorthand
 

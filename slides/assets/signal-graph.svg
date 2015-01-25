@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="348px" height="387px" viewBox="0 0 348 387" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.2.2 (9983) - http://www.bohemiancoding.com/sketch -->
+    <title>Untitled 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Rectangle-3-+-Rectangle-1-+-Rectangle-4" sketch:type="MSLayerGroup" transform="translate(205.000000, 146.000000)" fill="#F6A623">
+            <rect id="Rectangle-3" sketch:type="MSShapeGroup" x="58.4736903" y="73.8711315" width="27.3177594" height="25.8095325"></rect>
+            <path d="M0.968440194,4.6387812 C0.968440194,2.42958182 2.75199924,0.638671875 4.96295697,0.638671875 L138.037043,0.638671875 C140.243154,0.638671875 142.03156,2.43270644 142.03156,4.6387812 L142.03156,73.8121078 C142.03156,76.0213072 140.248001,77.8122171 138.037043,77.8122171 L4.96295697,77.8122171 C2.75684627,77.8122171 0.968440194,76.0181826 0.968440194,73.8121078 L0.968440194,4.6387812 Z M5.3964305,5.06666218 L138.23614,5.06666218 L138.23614,74.0167969 L5.3964305,74.0167969 L5.3964305,5.06666218 Z" id="Rectangle-1" sketch:type="MSShapeGroup"></path>
+            <rect id="Rectangle-4" sketch:type="MSShapeGroup" x="48" y="95" width="48" height="5"></rect>
+        </g>
+        <circle id="Oval-1" fill="#B8E986" sketch:type="MSShapeGroup" cx="58.5" cy="122.5" r="19.5"></circle>
+        <circle id="Oval-2" fill="#B8E986" sketch:type="MSShapeGroup" cx="19.5" cy="192.5" r="19.5"></circle>
+        <circle id="Oval-3" fill="#B8E986" sketch:type="MSShapeGroup" cx="97.5" cy="192.5" r="19.5"></circle>
+        <circle id="Oval-4" fill="#B8E986" sketch:type="MSShapeGroup" cx="58.5" cy="261.5" r="19.5"></circle>
+        <path d="M278.117188,143.792966 C282.9375,-41.8906267 58.5,-30.2578125 58.5,92.5165359" id="Path-1" stroke="#979797" stroke-width="4" sketch:type="MSShapeGroup"></path>
+        <path id="Path-1-decoration-1" d="M56.2352637,80.3949691 C56.8821868,84.3602808 57.5656156,87.7010333 58.5048473,91.5297934 C59.6631618,87.8025233 60.7689729,84.6810516 62.1898476,81.1318076" stroke="#979797" stroke-width="4"></path>
+        <path d="M275.90625,384.062546 C280.726563,198.378954 58.5703125,232.065541 58.5703125,354.839889" id="Path-2" stroke="#979797" stroke-width="4" sketch:type="MSShapeGroup" transform="translate(167.276943, 318.917993) scale(1, -1) translate(-167.276943, -318.917993) "></path>
+        <path id="Path-2-decoration-1" d="M278.907754,372.382271 C277.925121,376.223407 277.029607,379.490108 275.925592,383.264907 C274.929644,379.477614 274.02527,376.257561 272.909859,372.54116" stroke="#979797" stroke-width="4"></path>
+        <path d="M45.4090847,214.671875 L27.9648438,236.045717" id="Path-6" stroke="#979797" stroke-width="3" sketch:type="MSShapeGroup" transform="translate(36.686964, 225.358796) scale(-1, 1) translate(-36.686964, -225.358796) "></path>
+        <path id="Path-6-decoration-1" d="M32.8417365,225.325596 C31.2651302,228.917978 29.9137534,231.997163 28.3371472,235.589546 C31.5406834,233.324981 34.2865716,231.383925 37.4901078,229.119359" stroke="#979797" stroke-width="3"></path>
+        <path d="M73.1846653,214.671875 L90.6289062,236.045717" id="Path-5" stroke="#979797" stroke-width="3" sketch:type="MSShapeGroup" transform="translate(80.906786, 225.358796) scale(-1, 1) translate(-80.906786, -225.358796) "></path>
+        <path id="Path-5-decoration-1" d="M81.1036422,229.119359 C84.3071784,231.383925 87.0530666,233.324981 90.2566028,235.589546 C88.6799966,231.997163 87.3286198,228.917978 85.7520135,225.325596" stroke="#979797" stroke-width="3"></path>
+        <path d="M45.4090847,144.671875 L27.9648438,166.045717" id="Path-8" stroke="#979797" stroke-width="3" sketch:type="MSShapeGroup"></path>
+        <path id="Path-8-decoration-1" d="M32.8417365,155.325596 C31.2651302,158.917978 29.9137534,161.997163 28.3371472,165.589546 C31.5406834,163.324981 34.2865716,161.383925 37.4901078,159.119359" stroke="#979797" stroke-width="3"></path>
+        <path d="M73.1846653,144.671875 L90.6289062,166.045717" id="Path-7" stroke="#979797" stroke-width="3" sketch:type="MSShapeGroup"></path>
+        <path id="Path-7-decoration-1" d="M81.1036422,159.119359 C84.3071784,161.383925 87.0530666,163.324981 90.2566028,165.589546 C88.6799966,161.997163 87.3286198,158.917978 85.7520135,155.325596" stroke="#979797" stroke-width="3"></path>
+    </g>
+</svg>

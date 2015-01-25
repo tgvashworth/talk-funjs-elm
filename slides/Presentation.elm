@@ -124,7 +124,10 @@ slides =
   , assumptions
   , makeSlide "# The Basics"
   , frp
-  , signalGraph
+  , makeSlide "![Signal Graph](assets/signal-graph.png)"
+  , makeSlide "![Signal](assets/Signal.svg)"
+  , makeSlide "![Merge](assets/merge.svg)"
+  , makeSlide "![SampleOn](assets/sampleOn.svg)"
   , makeSlide "# The Signals"
   ]
 
@@ -203,12 +206,5 @@ frp = (,) "frp" <| Markdown.toHtml """
 - Inputs are *fixed*.
 
 Elm calls this "first-order" FRP.
-
-"""
-
-signalGraph : Slide
-signalGraph = (,) "signal-graph" <| Markdown.toHtml """
-
-![Signal Graph](assets/signal-graph.png)
 
 """
