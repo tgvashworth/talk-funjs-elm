@@ -40,7 +40,22 @@ type alias Slide = (String, Html)
 
 type alias Style = Dict.Dict String String
 
--- Main
+-- Inputs
+
+inputSignal : Signal Input
+inputSignal =
+  Signal.merge
+    (keyToInput <~ dropRepeats (.x <~ Keyboard.arrows))
+    (SetSlide <~ urlSlideInput)
+
+
+keyToInput : Int -> Input
+keyToInput x =
+  if | x < 0     -> ChangeSlide (-1)
+     | x > 0     -> ChangeSlide 1
+     | otherwise -> NoOp
+
+-- Update
 
 main : Signal Graphics.Element.Element
 main = renderMain <~ appStateSignal ~ Window.dimensions
@@ -58,18 +73,7 @@ step input state =
       SetSlide i    -> { state | currentSlide <- i }
       NoOp          -> state
 
-inputSignal : Signal Input
-inputSignal =
-  Signal.merge
-    (keyToInput <~ dropRepeats (.x <~ Keyboard.arrows))
-    (SetSlide <~ urlSlideInput)
-
-
-keyToInput : Int -> Input
-keyToInput x =
-  if | x < 0     -> ChangeSlide (-1)
-     | x > 0     -> ChangeSlide 1
-     | otherwise -> NoOp
+-- View
 
 renderMain : AppState -> (Int, Int) -> Graphics.Element.Element
 renderMain state (w, h) =
@@ -111,6 +115,7 @@ styleBlock =
     []
     [ text """
     img { width: 100%; }
+    .small-img { max-width: 20em;}
     #logo { height: 1em; width: 1em; }
     a:link { text-decoration: none; }
     a:hover { border-bottom: 1px solid currentColor; }
@@ -177,6 +182,7 @@ slides =
   , makeSlide <|
       "### Demo *([Mario.elm](http://debug.elm-lang.org/edit/Mario.elm))*\n" ++
       "![](http://media.giphy.com/media/a7WK2JbSFb05i/giphy.gif)"
+  , evan
   , makeSlide "### Basics.elm"
   , frp
   , makeSlide "![Signal Graph](assets/signal-graph.svg)"
@@ -260,6 +266,16 @@ I'm going to assume you understand:
 - homotopy type theory
 
 ![](http://media.giphy.com/media/Qmt4gXP40kmeA/giphy.gif)
+
+"""
+
+evan : Slide
+evan = (,) "evan" <| Markdown.toHtml """
+
+# Evan Czaplicki
+#### @czaplic
+
+<img class=small-img src=https://pbs.twimg.com/profile_images/443794371586977792/NxKUNpOQ_400x400.jpeg>"
 
 """
 

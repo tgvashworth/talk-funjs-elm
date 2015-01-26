@@ -22,6 +22,11 @@ type alias State =
   { query : String
   , users : List GithubUser }
 
+initialState : State
+initialState =
+  { query = ""
+  , users = [] }
+
 type Update
   = NoOp
   | Query String
@@ -41,7 +46,15 @@ type alias GithubUser =
 
 type alias GithubUsers = List GithubUser
 
--- Main
+-- Input
+
+updates : Signal Update
+updates =
+  mergeMany
+    [ Time.delay Time.millisecond queryResponseSignal
+    , Query <~ (subscribe queryChannel) ]
+
+-- Update
 
 main : Signal Element.Element
 main = render <~ state
@@ -49,38 +62,6 @@ main = render <~ state
 
 state : Signal State
 state = foldp step initialState updates
-
-render : State -> (Int,Int) -> Element.Element
-render state (w,h) =
-  toElement w h <|
-    div
-      [ class "container"
-      , containerStyle
-      ]
-      [ spacer "1em"
-      , input
-          [ inputStyle
-          , on "keyup" targetValue (send queryChannel)
-          , value state.query
-          ]
-          []
-      , spacer "1em"
-      , div
-          [ class "users" ]
-          (List.indexedMap renderUser state.users)
-      ]
-
-renderUser : Int -> GithubUser -> Html
-renderUser i user =
-  a
-    [ href user.url
-    , target "blank"
-    , userStyle i ]
-    [ renderAvatar user
-    , text user.login ]
-
-renderAvatar : GithubUser -> Html
-renderAvatar user = img [ avatarStyle, src user.avatarUrl ] []
 
 step : Update -> State -> State
 step update state =
@@ -91,19 +72,6 @@ step update state =
       Users users -> { state | users <- users }
       Query query -> { state | query <- query }
       _ -> state
-
-initialState : State
-initialState =
-  { query = ""
-  , users = [] }
-
--- Inputs
-
-updates : Signal Update
-updates =
-  mergeMany
-    [ Time.delay Time.millisecond queryResponseSignal
-    , Query <~ (subscribe queryChannel) ]
 
 queryChannel : Channel String
 queryChannel = channel ""
@@ -146,6 +114,40 @@ githubUserDecoder =
     ("id"         := Json.int)
     ("avatar_url" := Json.string)
     ("html_url"   := Json.string)
+
+-- View
+
+render : State -> (Int,Int) -> Element.Element
+render state (w,h) =
+  toElement w h <|
+    div
+      [ class "container"
+      , containerStyle
+      ]
+      [ spacer "1em"
+      , input
+          [ inputStyle
+          , on "keyup" targetValue (send queryChannel)
+          , value state.query
+          ]
+          []
+      , spacer "1em"
+      , div
+          [ class "users" ]
+          (List.indexedMap renderUser state.users)
+      ]
+
+renderUser : Int -> GithubUser -> Html
+renderUser i user =
+  a
+    [ href user.url
+    , target "blank"
+    , userStyle i ]
+    [ renderAvatar user
+    , text user.login ]
+
+renderAvatar : GithubUser -> Html
+renderAvatar user = img [ avatarStyle, src user.avatarUrl ] []
 
 -- Styles
 

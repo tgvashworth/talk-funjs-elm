@@ -10,12 +10,25 @@ import Signal (..)
 import String
 import Window
 
+-- Model
+
 type alias State =
   { text : String }
+
+initialState : State
+initialState =
+  { text = "" }
 
 type Update
   = NoOp
   | Change String
+
+-- Input
+
+updates : Channel Update
+updates = channel NoOp
+
+-- Update
 
 main : Signal Element.Element
 main = render <~ state
@@ -23,6 +36,17 @@ main = render <~ state
 
 state : Signal State
 state = foldp step initialState (subscribe updates)
+
+step : Update -> State -> State
+step update state =
+  let
+    _ = Debug.watch "update" update
+  in
+    case update of
+      Change str -> { state | text <- str }
+      _ -> state
+
+-- View
 
 render : State -> (Int,Int) -> Element.Element
 render state (w,h) =
@@ -44,22 +68,6 @@ render state (w,h) =
         , spacer "1em"
         , div [ outputStyle ] [ text <| cleanup state.text ]
         ]
-
-step : Update -> State -> State
-step update state =
-  let
-    _ = Debug.watch "update" update
-  in
-    case update of
-      Change str -> { state | text <- str }
-      _ -> state
-
-initialState : State
-initialState =
-  { text = "" }
-
-updates : Channel Update
-updates = channel NoOp
 
 -- Logic
 
