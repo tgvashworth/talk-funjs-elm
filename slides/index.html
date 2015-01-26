@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     window.addEventListener('hashchange', function () {
         if (lock) return (lock = false);
-        console.log('sending', hash());
         Presentation.ports.urlSlideInput.send(hash());
     });
 

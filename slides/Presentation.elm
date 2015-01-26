@@ -132,7 +132,7 @@ mergeStyles = (List.foldl Dict.union Dict.empty) >> Dict.toList >> style
 presentationStyle : Style
 presentationStyle =
   Dict.fromList
-    [ ("font", "24px/1.4 Avenir Next")
+    [ ("font", "30px/1.4 Avenir Next")
     , ("overflow", "hidden")
     ]
 
@@ -181,12 +181,13 @@ slides =
   , assumptions
   , makeSlide <|
       "### Demo *([Mario.elm](http://debug.elm-lang.org/edit/Mario.elm))*\n" ++
-      "![](http://media.giphy.com/media/a7WK2JbSFb05i/giphy.gif)"
+      "<img class=small-img src=http://media.giphy.com/media/a7WK2JbSFb05i/giphy.gif>"
   , evan
   , makeSlide "### Basics.elm"
   , frp
   , makeSlide "![Signal Graph](assets/signal-graph.svg)"
   , makeSlide "![Signal](assets/Signal.svg)"
+  , makeSlide "![map](assets/map.svg)"
   , makeSlide "![Merge](assets/merge.svg)"
   , makeSlide "![SampleOn](assets/sampleOn.svg)"
   , makeSlide "### Signals.elm"
@@ -265,7 +266,7 @@ I'm going to assume you understand:
 - higher-order functions and currying
 - homotopy type theory
 
-![](http://media.giphy.com/media/Qmt4gXP40kmeA/giphy.gif)
+<img class=small-img src=http://media.giphy.com/media/Qmt4gXP40kmeA/giphy.gif>"
 
 """
 

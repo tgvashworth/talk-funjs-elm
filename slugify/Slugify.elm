@@ -95,9 +95,10 @@ multispace = Regex.regex " {1,}"
 containerStyle : Attribute
 containerStyle =
   style
-    [ ("margin", "0 auto")
-    , ("width", "95%")
+    [ ("margin", "0 1em")
+    , ("width", "50%")
     , ("max-width", "30em")
+    , ("font-size", "2em")
     ]
 
 inputStyle : Attribute
