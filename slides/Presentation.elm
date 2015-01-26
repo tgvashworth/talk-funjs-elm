@@ -215,6 +215,8 @@ title = (,) "title" <| Markdown.toHtml """
 
 #### *Learning to love the signal graph.*
 
+[github.com/phuu/talk-funjs-elm](https://github.com/phuu/talk-funjs-elm)
+
 Tom Ashworth<br>
 @phuunet
 

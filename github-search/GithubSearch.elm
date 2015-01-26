@@ -124,7 +124,8 @@ render state (w,h) =
       [ class "container"
       , containerStyle
       ]
-      [ spacer "1em"
+      [ node "h3" [] [ text "GithubSearch.elm" ]
+      , spacer "1em"
       , input
           [ inputStyle
           , on "keyup" targetValue (send queryChannel)

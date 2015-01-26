@@ -58,7 +58,8 @@ render state (w,h) =
         [ class "test"
         , containerStyle
         ]
-        [ spacer "1em"
+        [ node "h3" [] [ text "Slugify.elm" ]
+        , spacer "1em"
         , input
             [ inputStyle
             , on "keyup" targetValue (\val -> send updates (Change val))
