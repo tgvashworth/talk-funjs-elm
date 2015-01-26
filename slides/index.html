@@ -1,0 +1,35 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Elm</title>
+<style>
+body {
+    overflow: hidden;
+}
+</style>
+<script src="elm.js"></script>
+<script>
+function hash() {
+    return parseInt(location.hash.slice(1), 10) || 0;
+}
+
+var Presentation;
+document.addEventListener('DOMContentLoaded', function () {
+    Presentation = Elm.fullscreen(Elm.Presentation, {
+        urlSlideInput: hash()
+    });
+
+    var lock = false;
+    Presentation.ports.urlSlide.subscribe(function (slide) {
+        if (hash() !== slide) lock = true;
+        location.hash = slide;
+    });
+
+    window.addEventListener('hashchange', function () {
+        if (lock) return (lock = false);
+        console.log('sending', hash());
+        Presentation.ports.urlSlideInput.send(hash());
+    });
+
+    Presentation.ports.urlSlideInput.send(hash());
+});
+</script>

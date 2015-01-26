@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="438px" height="16px" viewBox="0 0 438 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+<svg width="462px" height="17px" viewBox="0 0 462 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
     <!-- Generator: Sketch 3.2.2 (9983) - http://www.bohemiancoding.com/sketch -->
     <title>Signal</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <g id="Group" sketch:type="MSLayerGroup" transform="translate(1.000000, 0.000000)">
-            <g>
-                <path d="M0.5,7.5 L429.970612,7.5" id="Line" stroke="#979797" stroke-width="3" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
-                <path id="Line-decoration-1" d="M0.5,4.5 C0.5,6.6 0.5,8.4 0.5,10.5" stroke="#979797" stroke-width="3" stroke-linecap="square"></path>
-                <path d="M6.5,7.5 L435.970612,7.5" id="Line-2" stroke="#979797" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
-                <path id="Line-2-decoration-1" d="M424.7,10.5 C428.48,9.45 431.72,8.55 435.5,7.5 C431.72,6.45 428.48,5.55 424.7,4.5" stroke="#979797" stroke-linecap="square"></path>
+        <g id="Group" sketch:type="MSLayerGroup" transform="translate(-1.000000, -1.000000)">
+            <g transform="translate(26.000000, 2.000000)">
+                <path d="M0.5,7.5 L429.970612,7.5" id="Line" stroke="#DCDCDC" stroke-width="3" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+                <path id="Line-decoration-1" d="M0.5,4.5 C0.5,6.6 0.5,8.4 0.5,10.5" stroke="#DCDCDC" stroke-width="3" stroke-linecap="square"></path>
+                <path d="M6.5,7.5 L435.970612,7.5" id="Line-2" stroke="#DCDCDC" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+                <path id="Line-2-decoration-1" d="M424.7,10.5 C428.48,9.45 431.72,8.55 435.5,7.5 C431.72,6.45 428.48,5.55 424.7,4.5" stroke="#DCDCDC" stroke-linecap="square"></path>
                 <circle id="Oval-9" fill="#D0011B" sketch:type="MSShapeGroup" cx="35" cy="8" r="8"></circle>
                 <circle id="Oval-10" fill="#D0011B" sketch:type="MSShapeGroup" cx="66" cy="8" r="8"></circle>
                 <circle id="Oval-11" fill="#D0011B" sketch:type="MSShapeGroup" cx="138" cy="8" r="8"></circle>
@@ -19,6 +19,9 @@
                 <circle id="Oval-14" fill="#D0011B" sketch:type="MSShapeGroup" cx="294" cy="8" r="8"></circle>
                 <circle id="Oval-15" fill="#D0011B" sketch:type="MSShapeGroup" cx="349" cy="8" r="8"></circle>
             </g>
+            <text id="A-2" sketch:type="MSTextLayer" font-family="Gotham" font-size="18" font-weight="313" sketch:alignment="middle" fill="#292F33">
+                <tspan x="0.89" y="14.761">A</tspan>
+            </text>
         </g>
     </g>
 </svg>
